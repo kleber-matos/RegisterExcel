@@ -30,6 +30,10 @@ export default function App() {
   return (
     <>
       <h1>Lista de cadastros</h1>
+      <p>
+        É uma demonstração em fase de testes de funcionalidades. Em breve estará
+        pronto.
+      </p>
       <section>
         <table>
           <tr>
