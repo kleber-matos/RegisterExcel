@@ -14,7 +14,9 @@ export default function App() {
   };
 
   useEffect(() => {
-    buscadados();
+    setTimeout(() => {
+      buscadados();
+    }, 2000);
   }, []);
 
   //Vou arrumar ja ja
