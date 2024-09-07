@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+/* form {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+
+  h2 {
+    text-align: center;
+  }
+
+  input {
+    margin: 5px 0 5px 0;
+    height: 3vh;
+  }
+} */
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  max-width: 900px;
+  height: 40vh;
+  margin: 1rem;
+}
+
+h1 {
+  margin: 1rem;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  font-size: 12px;
+}
+
+.excel,
+button {
+  width: 100px;
+  height: 30px;
+  border: none;
+  background-color: #209e63;
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 1rem;
+}
+
+button {
+  background-color: whitesmoke;
+  color: black;
+}
