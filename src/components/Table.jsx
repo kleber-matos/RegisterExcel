@@ -1,40 +1,40 @@
 import React, { useState } from "react";
-import { CSVLink } from "react-csv";
-import { MdNavigateNext } from "react-icons/md";
-import { GrFormPrevious } from "react-icons/gr";
 import dataUsers from "../users.json";
-import { FaEdit, FaTrash, FaFilter, FaShareAlt } from "react-icons/fa";
-
+import { CSVLink } from "react-csv";
 import "./style.scss";
 
-export default function App() {
-  const [paginacao, setPaginacao] = useState(5);
+// React Icons
+import { FaEdit, FaTrash, FaFilter, FaShareAlt } from "react-icons/fa";
+import { MdNavigateNext } from "react-icons/md";
+import { GrFormPrevious } from "react-icons/gr";
 
-  //Vou arrumar ja ja
+export default function App() {
+  // States
+  const [paginacao, setPaginacao] = useState(5);
+  const [users, setUsers] = useState(dataUsers);
+
+  // Logicas dos botoes de paginação.
   const pages = (valor) => {
-    if (valor == "+" && dataUsers.length > paginacao) {
+    const increment = valor == "+" && users.length > paginacao;
+    const decrement = valor == "-" && paginacao > 5;
+
+    if (increment) {
       setPaginacao((prev) => prev + 5);
-    }
-    if (valor == "-" && paginacao > 5) {
+    } else if (decrement) {
       setPaginacao((prev) => prev - 5);
     }
+  };
+
+  // O 'prev' em situações que o estado pode mudar rapidamente, garante que você sempre esteja lidando com a versão mais atualizada do estado.
+  const removeUser = (id) => {
+    if (users.length > 5) setUsers((prev) => prev.filter((e) => e.id !== id));
   };
 
   return (
     <>
       <main>
         <section className="menu">
-          <div className="paginacao">
-            <button onClick={() => pages("-")}>
-              <GrFormPrevious />
-            </button>
-            <h2>
-              {paginacao}/ {dataUsers.length}
-            </h2>
-            <button onClick={() => pages("+")}>
-              <MdNavigateNext />
-            </button>
-          </div>
+          <button className="addUser">New User</button>
 
           <div className="filter">
             <button>
@@ -44,10 +44,10 @@ export default function App() {
 
             <CSVLink
               className="share"
-              data={dataUsers.slice(paginacao - 5, paginacao)}
+              data={users.slice(paginacao - 5, paginacao)}
             >
               <FaShareAlt />
-              Share
+              Export
             </CSVLink>
           </div>
         </section>
@@ -65,7 +65,7 @@ export default function App() {
               <th>Remove</th>
             </tr>
 
-            {dataUsers
+            {users
               .slice(paginacao - 5, paginacao)
               .map(
                 ({ id, name, email, phone, department, role, dateJoined }) => (
@@ -79,13 +79,24 @@ export default function App() {
                     <td className="action">
                       <FaEdit />
                     </td>
-                    <td className="action">
+                    <td onClick={() => removeUser(id)} className="action">
                       <FaTrash />
                     </td>
                   </tr>
                 )
               )}
           </table>
+          <div className="paginacao">
+            <button onClick={() => pages("-")}>
+              <GrFormPrevious />
+            </button>
+            <h2>
+              {paginacao}/ {users.length}
+            </h2>
+            <button onClick={() => pages("+")}>
+              <MdNavigateNext />
+            </button>
+          </div>
         </section>
       </main>
     </>

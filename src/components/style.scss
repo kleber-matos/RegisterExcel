@@ -26,15 +26,16 @@ tr:nth-child(even) {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  // border: solid;
 }
 
 .paginacao {
-  //   border: solid;
   width: 20%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 150px;
+  height: 10vh;
 }
 
 .paginacao button {
@@ -71,5 +72,23 @@ tr:nth-child(even) {
 
   &:hover {
     color: rgb(4, 0, 255);
+  }
+}
+
+.addUser {
+  width: 10vw;
+  max-width: 150px;
+  height: 4vh;
+  font-weight: 600;
+  background-color: transparent;
+  border: solid 2.5px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    transition: 0.8s;
+    max-width: 153px;
+    font-size: 1rem;
+    height: 4.3vh;
   }
 }
