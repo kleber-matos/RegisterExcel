@@ -1,0 +1,79 @@
+section {
+  border: solid;
+}
+
+table {
+  border-collapse: collapse;
+  width: 70vw;
+  height: 40vh;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  height: 3vh;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.action {
+  cursor: pointer;
+  text-align: center;
+}
+
+.menu {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.paginacao {
+  //   border: solid;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 150px;
+}
+
+.paginacao button {
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.filter {
+  width: 20vw;
+  max-width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter button,
+.share {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1.2rem;
+  width: 45%;
+  color: black;
+
+  &:hover {
+    color: rgb(4, 0, 255);
+  }
+}
