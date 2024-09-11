@@ -231,16 +231,18 @@ export default function App() {
             <th>dateJoined</th>
           </tr>
 
-          {users.slice(paginacao - 5, paginacao).map((e, index) => (
-            <tr key={index}>
-              <td>{e.name}</td>
-              <td>{e.email}</td>
-              <td>{e.phone}</td>
-              <td>{e.department}</td>
-              <td>{e.role}</td>
-              <td>{e.dateJoined}</td>
-            </tr>
-          ))}
+          {users
+            .slice(paginacao - 5, paginacao)
+            .map(({ id, name, email, phone, department, role, dateJoined }) => (
+              <tr key={id}>
+                <td>{name}</td>
+                <td>{email}</td>
+                <td>{phone}</td>
+                <td>{department}</td>
+                <td>{role}</td>
+                <td>{dateJoined}</td>
+              </tr>
+            ))}
         </table>
 
         {/* Export */}
