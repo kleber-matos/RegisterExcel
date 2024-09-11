@@ -3,209 +3,15 @@ import React, { useEffect, useState } from "react";
 import { CSVLink } from "react-csv";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
+import dataUsers from "./users.json";
 
 export default function App() {
-  // Tiver um probleminha com a Vercel com a requisição do json, mas nada complicado. Vou resolver logo logo
-  const array = [
-    {
-      id: 1,
-      name: "Lucas Silva",
-      email: "lucas.silva@example.com",
-      phone: "+1 555-111-2222",
-      department: "Vendas",
-      role: "Gerente de Vendas",
-      dateJoined: "2022-01-15",
-    },
-    {
-      id: 2,
-      name: "Beatriz Almeida",
-      email: "beatriz.almeida@example.com",
-      phone: "+1 555-333-4444",
-      department: "Engenharia",
-      role: "Engenheira de Software",
-      dateJoined: "2023-03-22",
-    },
-    {
-      id: 3,
-      name: "Carlos Oliveira",
-      email: "carlos.oliveira@example.com",
-      phone: "+1 555-555-6666",
-      department: "Marketing",
-      role: "Coordenador de Marketing",
-      dateJoined: "2021-07-30",
-    },
-    {
-      id: 4,
-      name: "Ana Costa",
-      email: "ana.costa@example.com",
-      phone: "+1 555-777-8888",
-      department: "Recursos Humanos",
-      role: "Especialista em RH",
-      dateJoined: "2020-11-05",
-    },
-    {
-      id: 5,
-      name: "Gabriel Santos",
-      email: "gabriel.santos@example.com",
-      phone: "+1 555-999-0000",
-      department: "Finanças",
-      role: "Analista Financeiro",
-      dateJoined: "2019-02-19",
-    },
-    {
-      id: 6,
-      name: "Laura Pereira",
-      email: "laura.pereira@example.com",
-      phone: "+1 555-111-9999",
-      department: "Suporte ao Cliente",
-      role: "Especialista em Suporte",
-      dateJoined: "2021-05-18",
-    },
-    {
-      id: 7,
-      name: "Felipe Martins",
-      email: "felipe.martins@example.com",
-      phone: "+1 555-222-3333",
-      department: "TI",
-      role: "Administrador de Sistemas",
-      dateJoined: "2022-09-12",
-    },
-    {
-      id: 8,
-      name: "Mariana Rocha",
-      email: "mariana.rocha@example.com",
-      phone: "+1 555-444-5555",
-      department: "Jurídico",
-      role: "Assessora Jurídica",
-      dateJoined: "2020-02-24",
-    },
-    {
-      id: 9,
-      name: "Rodrigo Lima",
-      email: "rodrigo.lima@example.com",
-      phone: "+1 555-666-7777",
-      department: "Operações",
-      role: "Gerente de Operações",
-      dateJoined: "2018-08-03",
-    },
-    {
-      id: 10,
-      name: "Juliana Silva",
-      email: "juliana.silva@example.com",
-      phone: "+1 555-888-9999",
-      department: "Produto",
-      role: "Gerente de Produto",
-      dateJoined: "2023-01-10",
-    },
-    {
-      id: 11,
-      name: "Renato Souza",
-      email: "renato.souza@example.com",
-      phone: "+1 555-222-4444",
-      department: "Pesquisa e Desenvolvimento",
-      role: "Pesquisador",
-      dateJoined: "2022-06-30",
-    },
-    {
-      id: 12,
-      name: "Camila Mendes",
-      email: "camila.mendes@example.com",
-      phone: "+1 555-333-5555",
-      department: "Comunicação",
-      role: "Analista de Comunicação",
-      dateJoined: "2021-11-12",
-    },
-    {
-      id: 13,
-      name: "Eduardo Costa",
-      email: "eduardo.costa@example.com",
-      phone: "+1 555-444-6666",
-      department: "Logística",
-      role: "Coordenador de Logística",
-      dateJoined: "2020-09-01",
-    },
-    {
-      id: 14,
-      name: "Larissa Castro",
-      email: "larissa.castro@example.com",
-      phone: "+1 555-555-7777",
-      department: "Desenvolvimento de Produtos",
-      role: "Designer de Produto",
-      dateJoined: "2023-04-21",
-    },
-    {
-      id: 15,
-      name: "Bruno Almeida",
-      email: "bruno.almeida@example.com",
-      phone: "+1 555-666-8888",
-      department: "TI",
-      role: "Analista de Sistemas",
-      dateJoined: "2019-07-16",
-    },
-    {
-      id: 16,
-      name: "Isabela Ferreira",
-      email: "isabela.ferreira@example.com",
-      phone: "+1 555-777-9999",
-      department: "Relações Públicas",
-      role: "Gerente de RP",
-      dateJoined: "2022-02-28",
-    },
-    {
-      id: 17,
-      name: "Gustavo Lima",
-      email: "gustavo.lima@example.com",
-      phone: "+1 555-888-0000",
-      department: "Vendas",
-      role: "Representante de Vendas",
-      dateJoined: "2023-07-25",
-    },
-    {
-      id: 18,
-      name: "Amanda Rocha",
-      email: "amanda.rocha@example.com",
-      phone: "+1 555-999-1111",
-      department: "Atendimento ao Cliente",
-      role: "Coordenadora de Atendimento",
-      dateJoined: "2020-12-15",
-    },
-    {
-      id: 19,
-      name: "Felipe Castro",
-      email: "felipe.castro@example.com",
-      phone: "+1 555-000-2222",
-      department: "Financeiro",
-      role: "Analista de Contabilidade",
-      dateJoined: "2021-03-03",
-    },
-    {
-      id: 20,
-      name: "Tatiane Costa",
-      email: "tatiane.costa@example.com",
-      phone: "+1 555-111-3333",
-      department: "Marketing",
-      role: "Especialista em Marketing Digital",
-      dateJoined: "2022-08-17",
-    },
-  ];
-
   const [users, setUsers] = useState([]);
   const [paginacao, setPaginacao] = useState(5);
 
-  const buscadados = async () => {
-    // resolver ***
-    // const dados = await axios.get("../src/users.json");
-    // setUsers(dados.data.data);
-    setUsers(array);
-  };
-
-  useEffect(() => {
-    buscadados();
-  }, []);
-
   //Vou arrumar ja ja
   const pages = (valor) => {
-    if (valor == "+" && users.length > paginacao) {
+    if (valor == "+" && dataUsers.length > paginacao) {
       setPaginacao((prev) => prev + 5);
     }
     if (valor == "-" && paginacao > 5) {
@@ -215,11 +21,8 @@ export default function App() {
 
   return (
     <>
-      <h1>Lista de cadastros</h1>
-      <p>
-        É uma demonstração em fase de testes de funcionalidades. Em breve estará
-        pronto.
-      </p>
+      <section></section>
+
       <section>
         <table>
           <tr>
@@ -231,7 +34,7 @@ export default function App() {
             <th>dateJoined</th>
           </tr>
 
-          {users
+          {dataUsers
             .slice(paginacao - 5, paginacao)
             .map(({ id, name, email, phone, department, role, dateJoined }) => (
               <tr key={id}>
@@ -246,7 +49,10 @@ export default function App() {
         </table>
 
         {/* Export */}
-        <CSVLink className="excel" data={users.slice(paginacao - 5, paginacao)}>
+        <CSVLink
+          className="excel"
+          data={dataUsers.slice(paginacao - 5, paginacao)}
+        >
           Export Planilha
         </CSVLink>
 
