@@ -30,11 +30,17 @@ export default function App() {
     if (users.length > 5) setUsers((prev) => prev.filter((e) => e.id !== id));
   };
 
+  const addUser = () => {
+    //
+  };
+
   return (
     <>
       <main>
         <section className="menu">
-          <button className="addUser">New User</button>
+          <button className="addUser" onClick={() => addUser()}>
+            New User
+          </button>
 
           <div className="filter">
             <button>
