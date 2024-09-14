@@ -7,6 +7,7 @@ import "./style.scss";
 import { FaEdit, FaTrash, FaFilter, FaShareAlt } from "react-icons/fa";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
+import Swal from "sweetalert2";
 
 export default function App() {
   // States
@@ -27,7 +28,28 @@ export default function App() {
 
   // O 'prev' em situações que o estado pode mudar rapidamente, garante que você sempre esteja lidando com a versão mais atualizada do estado.
   const removeUser = (id) => {
-    if (users.length > 5) setUsers((prev) => prev.filter((e) => e.id !== id));
+    Swal.fire({
+      title: "Tem certeza que quer apagar este usuário?",
+      text: "Esta ação é permanente e todos os dados associados a este usuário serão excluídos. Por favor, confirme se deseja continuar.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deletado!",
+          text: "Usuário foi excluído.",
+          icon: "success",
+          Color: "#d33",
+        });
+
+        if (users.length > 5)
+          setUsers((prev) => prev.filter((e) => e.id !== id));
+      }
+    });
   };
 
   const addUser = () => {
