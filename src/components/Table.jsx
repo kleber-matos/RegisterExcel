@@ -29,7 +29,7 @@ export default function App() {
   // O 'prev' em situações que o estado pode mudar rapidamente, garante que você sempre esteja lidando com a versão mais atualizada do estado.
   const removeUser = (id) => {
     Swal.fire({
-      title: "Tem certeza que quer apagar este usuário?",
+      title: "Tem certeza que deseja apagar este usuário?",
       text: "Esta ação é permanente e todos os dados associados a este usuário serão excluídos. Por favor, confirme se deseja continuar.",
       icon: "warning",
       showCancelButton: true,
