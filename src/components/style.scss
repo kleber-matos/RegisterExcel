@@ -92,3 +92,36 @@ tr:nth-child(even) {
     height: 4.3vh;
   }
 }
+
+.modal {
+  // border: solid 6px;
+  width: 70vw;
+  height: 70vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div {
+    border: solid;
+    width: 80%;
+    height: 40vh;
+    max-width: 700px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  button {
+    font-weight: 800;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    bottom: 10%;
+    left: 4%;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}

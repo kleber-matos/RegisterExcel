@@ -5,6 +5,8 @@ import "./style.scss";
 
 // React Icons
 import { FaEdit, FaTrash, FaFilter, FaShareAlt } from "react-icons/fa";
+import { IoMdCloseCircle } from "react-icons/io";
+
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import Swal from "sweetalert2";
@@ -13,6 +15,7 @@ export default function App() {
   // States
   const [paginacao, setPaginacao] = useState(5);
   const [users, setUsers] = useState(dataUsers);
+  const [modal, setModal] = useState(false);
 
   // Logicas dos botoes de paginação.
   const pages = (valor) => {
@@ -54,10 +57,21 @@ export default function App() {
 
   const addUser = () => {
     //
+    setModal(!modal);
   };
 
   return (
     <>
+      {modal && (
+        <div className="modal">
+          <div>
+            <h2>Modal - em construção</h2>
+            <button onClick={() => addUser()}>
+              <IoMdCloseCircle />
+            </button>
+          </div>
+        </div>
+      )}
       <main>
         <section className="menu">
           <button className="addUser" onClick={() => addUser()}>
