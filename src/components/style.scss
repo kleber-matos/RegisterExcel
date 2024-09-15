@@ -95,23 +95,23 @@ tr:nth-child(even) {
 
 .modal {
   // border: solid 6px;
-  width: 70vw;
-  height: 70vh;
+  border: solid red;
+  backdrop-filter: blur(2px);
   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 
   div {
     border: solid;
-    width: 80%;
+    width: 50%;
     height: 40vh;
-    max-width: 700px;
     border-radius: 10px;
     background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
   }
 
   button {
@@ -119,9 +119,11 @@ tr:nth-child(even) {
     background-color: transparent;
     border: none;
     position: relative;
-    bottom: 10%;
-    left: 4%;
-    font-size: 2rem;
+    bottom: 20%;
+    left: 100%;
+    font-size: 3rem;
     cursor: pointer;
+    display: flex;
+    justify-content: end;
   }
 }
