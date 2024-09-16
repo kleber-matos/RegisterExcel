@@ -66,6 +66,25 @@ export default function App() {
         <div className="modal">
           <div>
             <h2>Modal - em construção</h2>
+            <form>
+              <label htmlFor="">Name</label>
+              <input type="text" placeholder="name..." />
+
+              <label htmlFor="">email</label>
+              <input type="email" placeholder="email..." />
+
+              <label htmlFor="">phone</label>
+              <input type="text" placeholder="number" />
+
+              <label htmlFor="">department</label>
+              <input type="text" placeholder="department..." />
+
+              <label htmlFor="">role</label>
+              <input type="text" placeholder="role..." />
+
+              <label htmlFor="">dateJoined</label>
+              <input type="date" placeholder="dateJoined..." />
+            </form>
             <button onClick={() => addUser()}>
               <IoMdCloseCircle />
             </button>
