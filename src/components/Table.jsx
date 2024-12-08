@@ -5,7 +5,6 @@ import "./style.scss";
 
 // React Icons
 import { FaEdit, FaTrash, FaFilter, FaShareAlt } from "react-icons/fa";
-import { IoMdCloseCircle } from "react-icons/io";
 
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
@@ -71,39 +70,34 @@ export default function App() {
   };
 
   const edit = (e) => {
-    console.log(e);
     setOpenCap(!openCap);
 
     const cap = dataUsers.filter((item) => item.id === e);
     setCapId(cap[0].id);
-
+    setRole(cap[0].role);
     setName(cap[0].name);
     setEmail(cap[0].email);
     setPhone(cap[0].phone);
     setDepartment(cap[0].department);
-    setRole(cap[0].role);
     setDateJoined(cap[0].dateJoined);
-
-    console.log(cap);
   };
 
   const saveEdit = () => {
-    console.log("save edit");
     setOpenCap(!openCap);
-    const cap = dataUsers.filter((item) => item.id === capId);
 
+    const cap = dataUsers.filter((item) => item.id === capId);
     setName(cap[0].name);
+    setRole(cap[0].role);
     setEmail(cap[0].email);
     setPhone(cap[0].phone);
     setDepartment(cap[0].department);
-    setRole(cap[0].role);
     setDateJoined(cap[0].dateJoined);
 
     cap[0].name = name;
+    cap[0].role = role;
     cap[0].email = email;
     cap[0].phone = phone;
     cap[0].department = department;
-    cap[0].role = role;
     cap[0].dateJoined = dateJoined;
   };
 
@@ -111,68 +105,100 @@ export default function App() {
     <>
       {openCap && (
         <div className="modal">
-          <div>
+          <div className="container">
+            <h2>Contact Form</h2>
+            <label htmlFor="name">Name</label>
             <input
+              id="name"
               onChange={(e) => setName(e.target.value)}
               value={name}
               type="text"
             />
+
+            <label htmlFor="email">Email</label>
             <input
+              id="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               type="email"
             />
+
+            <label htmlFor="phone">Phone</label>
             <input
+              id="phone"
               onChange={(e) => setPhone(e.target.value)}
               value={phone}
               type="tel"
             />
+
+            <label htmlFor="department">Department</label>
             <input
+              id="department"
               onChange={(e) => setDepartment(e.target.value)}
               value={department}
               type="text"
             />
+
+            <label htmlFor="role">Role</label>
             <input
+              id="role"
               onChange={(e) => setRole(e.target.value)}
               value={role}
               type="text"
             />
+
+            <label htmlFor="datajoined">Date</label>
             <input
+              id="datajoined"
               onChange={(e) => setDateJoined(e.target.value)}
               value={dateJoined}
               type="date"
             />
-            <button onClick={() => saveEdit()}>save</button>
+
+            <hr />
+            <div className="buttons">
+              <button className="closed" onClick={() => setOpenCap(!openCap)}>
+                Closed
+              </button>
+              <button className="save" onClick={() => saveEdit()}>
+                save
+              </button>
+            </div>
           </div>
         </div>
       )}
 
       {modal && (
         <div className="modal">
-          <div>
+          <div className="container">
             <h2>Modal - em construção</h2>
-            <form>
-              <label htmlFor="">Name</label>
-              <input type="text" placeholder="name..." />
 
-              <label htmlFor="">email</label>
-              <input type="email" placeholder="email..." />
+            <label htmlFor="">Name</label>
+            <input type="text" placeholder="name..." />
 
-              <label htmlFor="">phone</label>
-              <input type="text" placeholder="number" />
+            <label htmlFor="">email</label>
+            <input type="email" placeholder="email..." />
 
-              <label htmlFor="">department</label>
-              <input type="text" placeholder="department..." />
+            <label htmlFor="">phone</label>
+            <input type="text" placeholder="number" />
 
-              <label htmlFor="">role</label>
-              <input type="text" placeholder="role..." />
+            <label htmlFor="">department</label>
+            <input type="text" placeholder="department..." />
 
-              <label htmlFor="">dateJoined</label>
-              <input type="date" placeholder="dateJoined..." />
-            </form>
-            <button onClick={() => addUser()}>
-              <IoMdCloseCircle />
-            </button>
+            <label htmlFor="">role</label>
+            <input type="text" placeholder="role..." />
+
+            <label htmlFor="">dateJoined</label>
+            <input type="date" placeholder="dateJoined..." />
+
+            <div className="buttons">
+              <button className="closed" onClick={() => addUser()}>
+                Closed
+              </button>
+              <button className="save" onClick={() => addUser()}>
+                Save
+              </button>
+            </div>
           </div>
         </div>
       )}
