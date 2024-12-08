@@ -17,6 +17,16 @@ export default function App() {
   const [users, setUsers] = useState(dataUsers);
   const [modal, setModal] = useState(false);
 
+  // Captura campos do usuario
+  const [openCap, setOpenCap] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [department, setDepartment] = useState("");
+  const [role, setRole] = useState("");
+  const [dateJoined, setDateJoined] = useState("");
+  const [capId, setCapId] = useState("");
+
   // Logicas dos botoes de paginação.
   const pages = (valor) => {
     const increment = valor == "+" && users.length > paginacao;
@@ -60,8 +70,83 @@ export default function App() {
     setModal(!modal);
   };
 
+  const edit = (e) => {
+    console.log(e);
+    setOpenCap(!openCap);
+
+    const cap = dataUsers.filter((item) => item.id === e);
+    setCapId(cap[0].id);
+
+    setName(cap[0].name);
+    setEmail(cap[0].email);
+    setPhone(cap[0].phone);
+    setDepartment(cap[0].department);
+    setRole(cap[0].role);
+    setDateJoined(cap[0].dateJoined);
+
+    console.log(cap);
+  };
+
+  const saveEdit = () => {
+    console.log("save edit");
+    setOpenCap(!openCap);
+    const cap = dataUsers.filter((item) => item.id === capId);
+
+    setName(cap[0].name);
+    setEmail(cap[0].email);
+    setPhone(cap[0].phone);
+    setDepartment(cap[0].department);
+    setRole(cap[0].role);
+    setDateJoined(cap[0].dateJoined);
+
+    cap[0].name = name;
+    cap[0].email = email;
+    cap[0].phone = phone;
+    cap[0].department = department;
+    cap[0].role = role;
+    cap[0].dateJoined = dateJoined;
+  };
+
   return (
     <>
+      {openCap && (
+        <div className="modal">
+          <div>
+            <input
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              type="text"
+            />
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              type="email"
+            />
+            <input
+              onChange={(e) => setPhone(e.target.value)}
+              value={phone}
+              type="tel"
+            />
+            <input
+              onChange={(e) => setDepartment(e.target.value)}
+              value={department}
+              type="text"
+            />
+            <input
+              onChange={(e) => setRole(e.target.value)}
+              value={role}
+              type="text"
+            />
+            <input
+              onChange={(e) => setDateJoined(e.target.value)}
+              value={dateJoined}
+              type="date"
+            />
+            <button onClick={() => saveEdit()}>save</button>
+          </div>
+        </div>
+      )}
+
       {modal && (
         <div className="modal">
           <div>
@@ -115,45 +200,56 @@ export default function App() {
 
         <section className="tabela">
           <table>
-            <tr>
-              <th>name</th>
-              <th>email</th>
-              <th>phone</th>
-              <th>department</th>
-              <th>role</th>
-              <th>dateJoined</th>
-              <th>Edit</th>
-              <th>Remove</th>
-            </tr>
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>department</th>
+                <th>role</th>
+                <th>dateJoined</th>
+                <th>Edit</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
 
-            {users
-              .slice(paginacao - 5, paginacao)
-              .map(
-                ({ id, name, email, phone, department, role, dateJoined }) => (
-                  <tr key={id}>
-                    <td>{name}</td>
-                    <td>{email}</td>
-                    <td>{phone}</td>
-                    <td>{department}</td>
-                    <td>{role}</td>
-                    <td>{dateJoined}</td>
-                    <td className="action">
-                      <FaEdit />
-                    </td>
-                    <td onClick={() => removeUser(id)} className="action">
-                      <FaTrash />
-                    </td>
-                  </tr>
-                )
-              )}
+            <tbody>
+              {users
+                .slice(paginacao - 5, paginacao)
+                .map(
+                  ({
+                    id,
+                    name,
+                    email,
+                    phone,
+                    department,
+                    role,
+                    dateJoined,
+                  }) => (
+                    <tr key={id}>
+                      <td>{name}</td>
+                      <td>{email}</td>
+                      <td>{phone}</td>
+                      <td>{department}</td>
+                      <td>{role}</td>
+                      <td>{dateJoined}</td>
+                      <td className="action" onClick={() => edit(id)}>
+                        <FaEdit />
+                      </td>
+                      <td onClick={() => removeUser(id)} className="action">
+                        <FaTrash />
+                      </td>
+                    </tr>
+                  )
+                )}
+            </tbody>
           </table>
+          <h2>Total users {users.length}</h2>
           <div className="paginacao">
             <button onClick={() => pages("-")}>
               <GrFormPrevious />
             </button>
-            <h2>
-              {paginacao}/ {users.length}
-            </h2>
+
             <button onClick={() => pages("+")}>
               <MdNavigateNext />
             </button>
