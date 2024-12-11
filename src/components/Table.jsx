@@ -143,6 +143,26 @@ export default function App() {
     console.log(users);
   };
 
+  const [test, setTest] = useState(false);
+
+  const filterUser = (e) => {
+    setTest(!test);
+    console.log(users);
+    let filtrado = users.sort((a, b) => b.id - a.id);
+
+    if (e) {
+      filtrado = users.sort((a, b) => b.id - a.id);
+    } else {
+      filtrado = users.sort((a, b) => a.id - b.id);
+    }
+
+    setUsers(filtrado);
+
+    console.log(filtrado);
+
+    // setUsers(filtrado);
+  };
+
   return (
     <>
       {/* Edit Users */}
@@ -282,8 +302,10 @@ export default function App() {
             New User
           </button>
 
+          {test ? "Menos Relevantes" : "Mais Relevantes"}
+
           <div className="filter">
-            <button>
+            <button onClick={() => filterUser(!test)}>
               <FaFilter />
               Filter
             </button>
