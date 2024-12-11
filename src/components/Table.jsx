@@ -99,10 +99,53 @@ export default function App() {
     cap[0].phone = phone;
     cap[0].department = department;
     cap[0].dateJoined = dateJoined;
+
+    if (openCap || !openCap) {
+      setName("");
+      setEmail("");
+      setPhone("");
+      setDepartment("");
+      setRole("");
+      setDateJoined("");
+    }
+  };
+
+  const newUser = () => {
+    setModal(!modal);
+    setName("");
+    setEmail("");
+    setPhone("");
+    setDepartment("");
+    setRole("");
+    setDateJoined("");
+    console.log(dataUsers);
+
+    const verifica =
+      name == "" ||
+      email == "" ||
+      phone == "" ||
+      department == "" ||
+      role == "" ||
+      dateJoined == "";
+
+    if (!verifica)
+      dataUsers.push({
+        id: Math.random() * 20,
+        name: name,
+        email: email,
+        phone: phone,
+        department: department,
+        role: role,
+        dateJoined: dateJoined,
+      });
+
+    setUsers(dataUsers);
+    console.log(users);
   };
 
   return (
     <>
+      {/* Edit Users */}
       {openCap && (
         <div className="modal">
           <div className="container">
@@ -168,34 +211,65 @@ export default function App() {
         </div>
       )}
 
+      {/* Create/add users */}
       {modal && (
         <div className="modal">
           <div className="container">
             <h2>Modal - em construção</h2>
 
-            <label htmlFor="">Name</label>
-            <input type="text" placeholder="name..." />
+            <label htmlFor="name">Name</label>
+            <input
+              id="name"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              type="text"
+            />
 
-            <label htmlFor="">email</label>
-            <input type="email" placeholder="email..." />
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              type="email"
+            />
 
-            <label htmlFor="">phone</label>
-            <input type="text" placeholder="number" />
+            <label htmlFor="phone">Phone</label>
+            <input
+              id="phone"
+              onChange={(e) => setPhone(e.target.value)}
+              value={phone}
+              type="tel"
+            />
 
-            <label htmlFor="">department</label>
-            <input type="text" placeholder="department..." />
+            <label htmlFor="department">Department</label>
+            <input
+              id="department"
+              onChange={(e) => setDepartment(e.target.value)}
+              value={department}
+              type="text"
+            />
 
-            <label htmlFor="">role</label>
-            <input type="text" placeholder="role..." />
+            <label htmlFor="role">Role</label>
+            <input
+              id="role"
+              onChange={(e) => setRole(e.target.value)}
+              value={role}
+              type="text"
+            />
 
-            <label htmlFor="">dateJoined</label>
-            <input type="date" placeholder="dateJoined..." />
+            <label htmlFor="datajoined">Date</label>
+            <input
+              id="datajoined"
+              onChange={(e) => setDateJoined(e.target.value)}
+              value={dateJoined}
+              type="date"
+            />
 
             <div className="buttons">
               <button className="closed" onClick={() => addUser()}>
                 Closed
               </button>
-              <button className="save" onClick={() => addUser()}>
+              <button className="save" onClick={() => newUser()}>
                 Save
               </button>
             </div>
@@ -204,7 +278,7 @@ export default function App() {
       )}
       <main>
         <section className="menu">
-          <button className="addUser" onClick={() => addUser()}>
+          <button className="addUser" onClick={() => newUser()}>
             New User
           </button>
 
